@@ -1,0 +1,55 @@
+{% extends 'chatroom/base.html' %}
+{% block title %}Chat Room | Home{% endblock %}
+{% block navigation%}
+{% load staticfiles %}
+
+<body>
+
+    <div class="container col-sm-3">
+        <div class="header">
+            <h3>Contacts You May Know</h3>
+        </div>
+        <div class="nav nav-pills nav-stacked">
+            {% if user %}
+                {% for user in first_name %}
+                    <li>
+                        <a id="contacts" name="{{ user.email }}" href="{% url 'chatroom:send' %}?s={{ request.user }}&r={{ user.email }}">{{ user.first_name }}</a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="message-box col-sm-5">
+
+        {% for obj in message %}
+            {% if obj.user == request.user %}
+                <img src="/media/{{ user.avatar }}" class="img-circle pull-right" width="40" height="40" /><br><br>
+                <li class="text-right list-group-item">{{ obj.message }}</li>
+            {% else %}
+                <img id="image" name="image" src="/media/{{ receiver.first_name.avatar }}" class="img-circle pull-left" width="40" height="40" /><br><br>
+                <li class="text-left list-group-item">{{ obj.message }}</li>
+            {% endif %}
+        {% empty %}
+            <li class="text-right list-group-item">No messages yet!</li>
+        {% endfor %}
+    </div>
+
+    <div id="chat_box" class="col-sm-4">
+        <form id="chat-form" method="post" action="" style="bottom: 30px; position: fixed;">
+
+            {% csrf_token %}
+
+            <input class="form-control" type="text" id="id_room" name="room" placeholder="Enter room no to chat" required/>
+
+            {{ form.message }}
+
+            <br>
+
+            <button id="button" class="btn btn-success" type="submit">Send</button>
+        </form>
+    </div>
+
+</body>
+
+{% endblock %}

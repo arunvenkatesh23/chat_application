@@ -1,0 +1,83 @@
+{% extends 'chatroom/base.html' %}
+{% block title %}Chatroom | Personal Details Update{% endblock %}
+{% block my_account_active %}active{% endblock %}
+{% load staticfiles %}
+{% block navigation%}
+    <div class="container-fluid col-sm-10" style="margin-top: 50px; margin-left: 500px;">
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <div class="panel panel-default" style="background: transparent">
+                    <div class="panel-body">
+                        <div class="page-header">
+                            {% if msg %}
+                                <p><strong><font color="#dc143c">{{ msg }}</font></strong></p>
+                            {% endif %}
+                        </div>
+                        <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+
+                            {% csrf_token %}
+
+
+                            <div class="input-group" data-toggle="tooltip" title="Username">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input class="form-control" autofocus="autofocus" value="{{ user.username }}" id="id_username" type="text" name="username" required/>
+                            </div><br>
+
+                            <div class="input-group" data-toggle="tooltip" title="Email Address">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input class="form-control" autofocus="autofocus" value="{{ user.email }}" id="id_email" type="email" name="email" disabled required/>
+                            </div><br>
+
+                            <div class="input-group" data-toggle="tooltip" title="First Name">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-king"></i></span>
+                                <input class="form-control" autofocus="autofocus" value="{{ user.first_name }}" id="id_first_name" type="text" name="first_name" required/>
+                            </div><br>
+
+                            <div class="input-group" data-toggle="tooltip" title="Last Name">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-bishop"></i></span>
+                                <input class="form-control" autofocus="autofocus" value="{{ user.last_name }}" id="id_last_name" type="text" name="last_name"/>
+                            </div><br>
+
+                            <div class="input-group" data-toggle="tooltip" title="Date of Birth">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input class="form-control" autofocus="autofocus" value="{{ user.date_of_birth }}" id="id_date_of_birth" type="date" name="date_of_birth"/>
+                            </div><br>
+
+                            <div class="input-group" data-toggle="tooltip" title="Address">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input class="form-control" autofocus="autofocus" value="{{ user.address }}" id="id_address" type="text" name="address" required/>
+                            </div><br>
+
+                            <div class="input-group" data-toggle="tooltip" title="City Name">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                <input class="form-control" autofocus="autofocus" value="{{ user.city }}" id="id_city" type="text" name="city" required/>
+                            </div><br>
+
+                            <div class="input-group" data-toggle="tooltip" title="State Name">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
+                                <input class="form-control" autofocus="autofocus" value="{{ user.state }}" id="id_state" type="text" name="state" required/>
+                            </div><br>
+
+                            <div class="input-group" data-toggle="tooltip" title="Country Name">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                                <input class="form-control" autofocus="autofocus" value="{{ user.country }}" id="id_country" type="text" name="country" required/>
+                            </div><br>
+
+                            <div class="input-group" data-toggle="tooltip" title="Mobile Number">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <input class="form-control" autofocus="autofocus" value="{{ user.mobile }}" id="id_mobile" type="text" name="mobile" required/>
+                            </div><br>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-4">
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
